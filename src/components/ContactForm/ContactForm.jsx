@@ -2,8 +2,8 @@ import { React } from "react";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import css from 'components/ContactForm/ContactForm.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { phonebookSelector } from "redux/selectors";
-import { addContactThunk } from "search/thunks";
+import { phonebookSelector } from "redux/contacts/selectors";
+import { addContactThunk } from "redux/contacts/thunks";
 
 export const ContactForm = () => {
    const { items } = useSelector(phonebookSelector);

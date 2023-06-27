@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 import css from 'components/ContactList/ContactList.module.css';
-import { filteredNamesArr } from "redux/selectors";
+import { filteredNamesArr } from "redux/contacts/selectors";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchContactsThunk, deleteContactThunk } from "search/thunks";
+import { fetchContactsThunk, deleteContactThunk } from "redux/contacts/thunks";
 
 export const ContactList = () => {
    const filteredNames = useSelector(filteredNamesArr);
