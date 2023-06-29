@@ -8,7 +8,7 @@ import { fetchContactsThunk } from 'redux/contacts/thunks';
 import { selectLoading } from 'redux/contacts/selectors';
 import css from './Contacts.module.css'
 
-export default function Tasks() {
+export default function Contacts() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
 
