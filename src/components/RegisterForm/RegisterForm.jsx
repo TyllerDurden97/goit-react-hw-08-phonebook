@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/thunks';
-import css from './RegisterForm.module.css';
+// import css from './RegisterForm.module.css';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import { Box, Button, TextField, Typography } from '@mui/material';
 

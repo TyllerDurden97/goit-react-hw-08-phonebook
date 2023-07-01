@@ -7,8 +7,8 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/thunks';
 import { useAuth } from 'hooks';
-import { logOut } from '../redux/auth/thunks';
-import { phonebook } from "redux/contacts/selectors";
+// import { logOut } from '../redux/auth/thunks';
+// import { phonebook } from "redux/contacts/selectors";
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
 const RegisterPage = lazy(() => import('../pages/Register/Register'));
@@ -23,10 +23,10 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]); 
    
-   useEffect(() => {
-      if (logOut.fulfilled) {
-         phonebook.contacts = {};
-}  }, []); 
+//    useEffect(() => {
+//       if (logOut.fulfilled) {
+//          phonebook.contacts = {};
+// }  }, []); 
 
   return userRefreshing ? (
     <b>Refreshing user...</b>
