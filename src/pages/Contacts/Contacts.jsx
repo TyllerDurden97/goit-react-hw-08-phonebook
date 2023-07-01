@@ -6,6 +6,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { fetchContactsThunk } from 'redux/contacts/thunks';
 import { selectLoading } from 'redux/contacts/selectors';
+import {Loader} from '../../components/Loader/Loader'
 import css from './Contacts.module.css'
 
 export default function Contacts() {
@@ -21,7 +22,7 @@ export default function Contacts() {
       <Helmet>
         <title>Your contacts</title>
       </Helmet>
-        <div>{isLoading && 'Request in progress...'}</div>
+        {isLoading && <Loader/>}
         <div
            className={css.pageWrap}
         >

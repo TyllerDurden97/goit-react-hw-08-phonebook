@@ -7,7 +7,7 @@ const initialState = {
   userLoggedIn: false,
   userRefreshing: false,
 };
-
+   
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -32,8 +32,7 @@ const authSlice = createSlice({
          .addCase(refreshUser.fulfilled, (state, action) => {
             state.user = action.payload;
             state.userLoggedIn = true;
-            state.userRefreshing = false;
-         console.log(state.userLoggedIn)}) 
+            state.userRefreshing = false;}) 
          .addCase(refreshUser.rejected, (state, action) => {
             state.userRefreshing = false;})
 

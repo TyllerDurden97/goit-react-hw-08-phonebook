@@ -4,8 +4,13 @@
   padding: 12px;
   font-weight: 700;
   color: #2a363b;
+  opacity: 1;
 }
 
-.link.active {
-  color: #e84a5f;
+.link:active {
+  color: #f2e8e9;
+}
+
+.link:hover {
+  color: #f2e8e9;
 }

@@ -1,9 +1,10 @@
 import { React } from "react";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import css from 'components/ContactForm/ContactForm.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { phonebookSelector } from "redux/contacts/selectors";
 import { addContactThunk } from "redux/contacts/thunks";
+import { toast } from 'react-toastify';
+
 
 export const ContactForm = () => {
    const { items } = useSelector(phonebookSelector);
@@ -19,7 +20,7 @@ export const ContactForm = () => {
           contact.name.toLowerCase() === newContact.name.toLowerCase()).length;
     
       if (filteredContact) {
-         return Notify.info(`${newContact.name} is already in Contacts`)
+         return toast.info(`${newContact.name} is already in Contacts`)
       } else {
          dispatch(addContactThunk(newContact));
          e.currentTarget.reset();

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -13,6 +14,7 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+
 /*
  * POST @ /users/signup
  * body: { name, email, password }
@@ -25,8 +27,9 @@ export const register = createAsyncThunk(
       // After successful registration, add the token to the HTTP header
        console.log(res.data);
        setAuthHeader(res.data.token);
-      return res.data;
+       return res.data;
     } catch (error) {
+      toast.warning(`Error during registration. ${error.message} `);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -45,7 +48,9 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      toast.warning(`User ${credentials.email} is not in the database. Register please. `);
+       return thunkAPI.rejectWithValue(error.message);
+       
     }
   }
 );
@@ -58,7 +63,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     // After a successful logout, remove the token from the HTTP header
-    clearAuthHeader();
+     clearAuthHeader();    
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

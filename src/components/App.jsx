@@ -1,19 +1,14 @@
 import { React } from "react";
-// import { Filter } from 'components/Filter/Filter';
-// import { ContactForm } from 'components/ContactForm/ContactForm';
-// import { ContactList } from 'components/ContactList/ContactList';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import css from 'components/App.module.css';
-
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/thunks';
 import { useAuth } from 'hooks';
+import { logOut } from '../redux/auth/thunks';
+import { phonebook } from "redux/contacts/selectors";
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
 const RegisterPage = lazy(() => import('../pages/Register/Register'));
@@ -26,7 +21,12 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]);
+  }, [dispatch]); 
+   
+   useEffect(() => {
+      if (logOut.fulfilled) {
+         phonebook.contacts = {};
+}  }, []); 
 
   return userRefreshing ? (
     <b>Refreshing user...</b>
@@ -52,38 +52,10 @@ export const App = () => {
             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
-      </Route>
+           </Route>
+           <Route path="*" element={<Navigate to={'/'} />} />
     </Routes>
   );
 };
 
-// export const App = () => {
-   
-//    return (
-      // <div className={css.pageWrap}>
-      //    <h1 className={css.pageTitle}>Phonebook</h1>
-      //    <ContactForm
-      //    />
-      //    <h2 className={css.title}>Contacts</h2>
-      //    <div className={css.contactsArea}>
-      //       <Filter
-      //       />
-      //       <ContactList
-      //       />
-      //       <ToastContainer
-      //       position="top-right"
-      //       autoClose={3000}
-      //       hideProgressBar={false}
-      //       newestOnTop={false}
-      //       closeOnClick
-      //       rtl={false}
-      //       pauseOnFocusLoss
-      //       draggable={false}
-      //       pauseOnHover
-      //       theme="colored"
-      //       />
-      //    </div>
-      // </div>
-//    );           
-//    };
 
